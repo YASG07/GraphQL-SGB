@@ -1,0 +1,34 @@
+type Libro {
+    id: ID!
+    titulo: String!
+    autor: String!
+    isbn: String!
+    publicacion: String!
+}
+
+type Autor {
+    id: ID!
+    nombre: String!
+    nacionalidad: String!
+}
+
+type Prestamo {
+    id: ID!
+    libro: String!
+    usuario: String!
+    fechaPrestamo: String!
+    fechaDevolucion: String
+}
+
+type Query {
+    allLibros: [Libro!]!
+    getLibro (id: ID!): Libro!
+    allAutores: [Autor!]!
+    allPrestamos: [Prestamo!]!
+}
+
+type Mutation {
+    createLibro(titulo: String!, autor: String!, isbn: String!, publicacion: String!):Libro!
+    createAutor(nombre: String!, nacionalidad: String!):Autor!
+    createPrestamo(libro: String!, usuario: String!, fechaPrestamo: String!, fechaDevolucion: String!):Prestamo!
+}

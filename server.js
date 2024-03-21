@@ -13,23 +13,32 @@ const autores = [
 ];
 
 const libros = [
-    { id:"1", titulo: "1984", autor: autores[1].nombre, isbn: "1920ABC", publicacion: "1928"},
-    { id:"2", titulo: "La Máquina del Tiempo", autor: autores[4].nombre, isbn: "1920ABD", publicacion: "1887"},
-    { id:"3", titulo: "Picnic Extraterrestre", autor: autores[3].nombre, isbn: "1920ACD", publicacion: "1976"},
-    { id:"4", titulo: "La Guerra de los Mundos", autor: autores[4].nombre, isbn: "192CDF0", publicacion: "1883"},
+    { id: 1, titulo: "1984", autor: autores[1], isbn: "1920ABC", publicacion: "1928"},
+    { id: 2, titulo: "La Máquina del Tiempo", autor: autores[4], isbn: "1920ABD", publicacion: "1887"},
+    { id: 3, titulo: "Picnic Extraterrestre", autor: autores[3], isbn: "1920ACD", publicacion: "1976"},
+    { id: 4, titulo: "La Guerra de los Mundos", autor: autores[4], isbn: "192CDF0", publicacion: "1883"},
 ];
 
 const prestamos = [
-    { id: "1", libro: libros[1].titulo, usuario: "20400824", fechaPrestamo: "2022-03-01", fechaDevolucion: "2022-04-12"},
-    { id: "2", libro: libros[2].titulo, usuario: "20400724", fechaPrestamo: "2024-03-01", fechaDevolucion: "2024-04-12"}
+    { id: "1", libro: libros[1], usuario: "20400824", fechaPrestamo: "2022-03-01", fechaDevolucion: "2022-04-12"},
+    { id: "2", libro: libros[2], usuario: "20400724", fechaPrestamo: "2024-03-01", fechaDevolucion: "2024-04-12"}
 ];
 
 const resolvers = {
     Query: {
-        allLibros: () => libros,
-        getLibro: (id) => libros[id],
-        allAutores: () => autores,
-        allPrestamos: () => prestamos 
+        allLibros: () => {
+            return libros;
+        },
+        getLibro: (ID) => {
+            const libro = libros.find(element => element.id === ID);
+            return libro;
+        },
+        allAutores: () => {
+            return autores;
+        },
+        allPrestamos: () => {
+            return prestamos; 
+        }
     },
     Mutation: {
         createLibro: (parent, {titulo, autor, isbn, publicacion}) => {

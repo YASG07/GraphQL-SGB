@@ -1,7 +1,7 @@
 type Libro {
     id: ID!
     titulo: String!
-    autor: String!
+    autor: Autor!
     isbn: String!
     publicacion: String!
 }
@@ -14,7 +14,7 @@ type Autor {
 
 type Prestamo {
     id: ID!
-    libro: String!
+    libro: Libro!
     usuario: String!
     fechaPrestamo: String!
     fechaDevolucion: String
@@ -22,7 +22,7 @@ type Prestamo {
 
 type Query {
     allLibros: [Libro!]!
-    getLibro (id: ID!): Libro!
+    getLibro (id: ID!): Libro
     allAutores: [Autor!]!
     allPrestamos: [Prestamo!]!
 }

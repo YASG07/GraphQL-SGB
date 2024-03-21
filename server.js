@@ -13,10 +13,10 @@ const autores = [
 ];
 
 const libros = [
-    { id: 1, titulo: "1984", autor: autores[1], isbn: "1920ABC", publicacion: "1928"},
-    { id: 2, titulo: "La Máquina del Tiempo", autor: autores[4], isbn: "1920ABD", publicacion: "1887"},
-    { id: 3, titulo: "Picnic Extraterrestre", autor: autores[3], isbn: "1920ACD", publicacion: "1976"},
-    { id: 4, titulo: "La Guerra de los Mundos", autor: autores[4], isbn: "192CDF0", publicacion: "1883"},
+    { id: "1", titulo: "1984", autor: autores[1], isbn: "1920ABC", publicacion: "1928"},
+    { id: "2", titulo: "La Máquina del Tiempo", autor: autores[4], isbn: "1920ABD", publicacion: "1887"},
+    { id: "3", titulo: "Picnic Extraterrestre", autor: autores[3], isbn: "1920ACD", publicacion: "1976"},
+    { id: "4", titulo: "La Guerra de los Mundos", autor: autores[4], isbn: "192CDF0", publicacion: "1883"},
 ];
 
 const prestamos = [
@@ -29,8 +29,9 @@ const resolvers = {
         allLibros: () => {
             return libros;
         },
-        getLibro: (ID) => {
-            const libro = libros.find(element => element.id === ID);
+        getLibro: (_, { id }) => {
+            console.log(id);
+            const libro = libros.find((element) => element.id === id);
             return libro;
         },
         allAutores: () => {

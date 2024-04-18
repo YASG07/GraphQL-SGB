@@ -72,7 +72,92 @@ const resolvers = {
             };
             prestamos.push(newPrestamo);
             return newPrestamo;
-        }
+        },
+        // Mutaciones para eliminar
+        removeLibro: (parent, { id }) => {
+            const libroIndex = libros.findIndex(libro => libro.id === id);
+            if (libroIndex === -1) {
+              throw new Error('El libro no se encontró');
+            }
+            const libroEliminado = libros.splice(libroIndex, 1)[0];
+            return libroEliminado;
+        },
+        removeAutor: (parent, { id }) => {
+            const autorIndex = autores.findIndex(autor => autor.id === id);
+            if (autorIndex === -1) {
+              throw new Error('El autor no se encontró');
+            }
+            const autorEliminado = autores.splice(autorIndex, 1)[0];
+            return autorEliminado;
+        },
+        removePrestamo: (parent, { id }) => {
+            const prestamoIndex = prestamos.findIndex(prestamo => prestamo.id === id);
+            if (prestamoIndex === -1) {
+              throw new Error('El prestamo no se encontró');
+            }
+            const prestamoEliminado = prestamos.splice(prestamoIndex, 1)[0];
+            return prestamoEliminado;
+        },
+        // Mutaciones para actualizar
+        // Creo que hace faltan falta ciertas comprobaciones
+        updateLibro: (parent, {id, titulo, autor, isbn, publicacion}) => {
+            const libroIndex = libros.findIndex(libro => libro.id === id);
+
+            if (libroIndex === -1) {
+              throw new Error('El libro no se encontró');
+            }
+
+            const updatedLibro = {
+                id: id,
+                titulo: titulo,
+                autor: autor,
+                isbn: isbn,
+                publicacion: publicacion
+            };
+
+            // Esta bien culero esto, perdon :c
+            libros[libroIndex] = updatedLibro;
+            
+            return updatedLibro;
+        },
+        // Solo funciona este :c
+        updateAutor: (parent, {id, nombre, nacionalidad}) => {
+            const autorIndex = autores.findIndex(autor => autor.id === id);
+            
+            if (autorIndex === -1) {
+              throw new Error('El autor no se encontró');
+            }
+            
+            const updatedAutor = {
+                id: id,
+                nombre: nombre,
+                nacionalidad: nacionalidad
+            };
+            
+            autores[autorIndex] = updatedAutor;
+            
+            return updatedAutor;
+        },
+        // Lo mismo de updateLibro
+        updatePrestamo: (parent, {id, libro, usuario, fechaPrestamo, fechaDevolucion}) => {
+            const prestamoIndex = prestamos.findIndex(prestamo => prestamo.id === id);
+            
+            if (prestamoIndex === -1) {
+              throw new Error('El prestamo no se encontró');
+            }
+            
+            const updatedPrestamo = {
+                id: id,
+                libro: libro,
+                usuario: usuario,
+                fechaPrestamo: fechaPrestamo,
+                fechaDevolucion: fechaDevolucion
+            };
+            
+            prestamos[prestamoIndex] = updatedPrestamo
+            
+            return updatedPrestamo;
+        },
     }
 }
 

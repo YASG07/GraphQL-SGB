@@ -31,4 +31,11 @@ type Mutation {
     createLibro(titulo: String!, autor: String!, isbn: String!, publicacion: String!):Libro!
     createAutor(nombre: String!, nacionalidad: String!):Autor!
     createPrestamo(libro: String!, usuario: String!, fechaPrestamo: String!, fechaDevolucion: String!):Prestamo!
+    removeLibro(id: ID!):Libro!
+    removeAutor(id: ID!):Autor!
+    removePrestamo(id: ID!):Prestamo!
+    updateLibro(id: ID!, titulo: String!, autor: String!, isbn: String!, publicacion: String!):Libro!
+    updateAutor(id: ID!, nombre: String!, nacionalidad: String!):Autor!
+    updatePrestamo(id: ID!, libro: String!, usuario: String!, fechaPrestamo: String!, fechaDevolucion: String!):Prestamo!
+    
 }

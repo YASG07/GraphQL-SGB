@@ -107,6 +107,10 @@ const resolvers = {
               throw new Error('El libro no se encontró');
             }
 
+            if(autor === undefined){
+                autor = libros[libroIndex].autor
+            }
+            
             const updatedLibro = {
                 id: id,
                 titulo: titulo,
@@ -144,6 +148,10 @@ const resolvers = {
             
             if (prestamoIndex === -1) {
               throw new Error('El prestamo no se encontró');
+            }
+
+            if(libro === undefined){
+                libro = prestamos[prestamoIndex].libro
             }
             
             const updatedPrestamo = {
